@@ -1,170 +1,164 @@
 Please read fully before starting.
 
+---
+
 # Using this project
 
-Clone the project, change into the directory and install the dependencies.
+Please read this document fully before starting.
 
-Please use
-node version
+Clone the project, change into the directory, and install dependencies:
+
+**Node version**
+
 ```
-16.0.0
+16.0.0 or 18.0.0
 ```
-yarn version
+
+**Yarn version**
+
 ```
 1.22.19
 ```
 
-Install dependencies 
+Install dependencies:
+
 ```bash
 yarn
 ```
 
-create a .env file if you plan on using environment variables
+Create a `.env` file if you plan on using environment variables:
+
 ```bash
 touch .env
 ```
 
-Run the project
+Run the project:
+
 ```bash
 yarn dev
 ```
 
-# The task
+---
 
-# Time Expectation:
-We don't expect you to spend more than 1.5 hours on this test. Please commit your work regularly so that we can see your thought process, and we look forward to discussing your approach during the review.
+# The Technical Test
 
-# Task 1: Create a Scrabble Score API (Node.js)
-Objective:
-Develop a RESTful API within an existing Node.js backend (which is part of a monorepo) to compute the Scrabble score for a given word.
+This test is designed to give us a window into how you think, how you approach design and code, and how you express creativity within given constraints.
 
-Monorepo Context:
-The monorepo already contains a Node.js backend and a React frontend.
-You will add your new API endpoint to the existing backend.
+We’re less interested in whether you “get everything right,” and more in how you **use your judgment, respect design as a craft, and collaborate with the codebase in front of you**.
 
-## Requirements:
-How this api should work:
-Create an api that accepts a word and calculates the score. 
-[What is scrabble?](https://en.wikipedia.org/wiki/Scrabble)
-As an example, the api should accept a word like "cabbage" and this should return a score worth 14 points:
+We’ve kept the instructions intentionally light to give you freedom. Please feel free to make decisions, explore, and explain your reasoning.
 
-The logic:
-3 points for C
-1 point for A, twice
-3 points for B, twice
-2 points for G
-1 point for E
-And to total:
+---
 
-3 + 2*1 + 2*3 + 2 + 1
-= 3 + 2 + 6 + 3
-= 5 + 9
-= 14
+## Time Expectation
 
-API Endpoint:
-Method: POST
-Endpoint URL: /api/scrabble-score
-Input: A JSON object containing the word.
+We don’t expect you to spend more than about **1.5 - 2 hours** but this is totally up to you.
 
-```json
-{
-  "word": "example"
-}
-```
+Please create a repo and commit your work regularly. Even unfinished work helps us see your thought process and collaboration style. We’ll review and discuss together afterward.
 
-Output: A JSON object containing the computed score.
-```json
-{
-  "score": 14
-}
-```
+---
 
-Implementation Details:
+## Task 1: Create a Scrabble Score API (Node.js)
 
-Backend Technology: Use Node.js (Express, fastify) for implementing the API.
-Letter Values: Use the Scrabble letter values provided:
+**Objective:**
+Add a RESTful API endpoint in the existing backend that computes a Scrabble score for a given word.
 
-A, E, I, O, U, L, N, R, S, T = 1 
+**Quick Scrabble Primer:**
+Scrabble is a word game where each letter has a point value. The score of a word is simply the sum of its letters (no board bonuses for this test).
 
-D, G = 2 
+**Letter values:**
 
-B, C, M, P = 3 
+* 1 point → A, E, I, O, U, L, N, R, S, T
+* 2 points → D, G
+* 3 points → B, C, M, P
+* 4 points → F, H, V, W, Y
+* 5 points → K
+* 8 points → J, X
+* 10 points → Q, Z
 
-F, H, V, W, Y = 4 
+**Example:**
+“cabbage” → 14 points
 
-K = 5 
+**Details:**
 
-J, X = 8 
+* Method: `POST`
+* Endpoint: `/api/scrabble-score`
+* Input:
 
-Q, Z = 10
+  ```json
+  { "word": "example" }
+  ```
+* Output:
 
-Edge Cases:
-Ensure the API handles case insensitivity (e.g., "Cabbage" and "cabbage" should return the same score).
-Return an error message if the input word contains non-alphabetic characters.
-Handle empty or null input by returning an appropriate error message.
+  ```json
+  { "score": 14 }
+  ```
 
-Monorepo Integration:
-Folder Structure: Add your API logic under the existing backend folder structure.
-Routing: Integrate the new /api/scrabble-score route into the current routing setup.
-Configuration: Ensure any necessary configurations, such as environment variables or middleware, are correctly set up to support your API.
-Error Handling: Ensure that your API follows the existing error-handling patterns used in the backend.
+**Notes:**
 
-Testing:
-If time permits, write unit tests for the API endpoint using a testing framework like Jest, or similar.
-Include tests for edge cases, such as input with special characters, numbers, or mixed case.
+* Handle case insensitivity.
+* Return a clear error for invalid input (numbers, symbols, empty strings).
+* Integrate into the backend’s existing structure and routing.
+* Follow existing error-handling patterns.
 
-Documentation:
-Update the monorepo's main README or backend-specific README to include instructions on how to use the new API endpoint.
-Provide example API requests and responses.
+**Stretch goal (if time permits):**
 
-Commit Regularly:
-As you work through this task, please commit regularly to the repository. These commits will help us understand your approach, thought process, and how you manage your time. Even if you don't fully complete the task, we'll be able to see your progress and how you tackled the problem.
+* Add unit tests (e.g. Jest) to cover normal cases and edge cases.
 
-# Task 2: Connect the React Frontend to the Scrabble Score API
-Objective:
-Extend the existing React frontend to interact with the newly created Scrabble Score API, allowing users to input words and view their corresponding Scrabble scores.
+---
 
-Monorepo Context:
-The frontend is part of the same monorepo and is already set up with basic functionality.
+## Task 2: Connect the React Frontend
 
+**Objective:**
+Extend the frontend to let users input a word and see its Scrabble score.
 
-## Requirements:
+**Notes:**
 
-Frontend UI:
-Extend the existing UI to include a form with an input field and a submit button.
-Allow users to type a word into the input field and submit it to the new /api/scrabble-score API endpoint.
+* Add a form with an input field and submit button.
+* When submitted, call your API and display results in a table that keeps history of submissions.
+* Show user-friendly error states.
 
-Functionality:
-On submitting the form, send a POST request to the /api/scrabble-score endpoint.
-Capture the API response and display the word and its score in a table below the form.
-Ensure the table updates dynamically to show a history of all submitted words and their corresponding scores.
+---
 
-Implementation Details:
-React Components: Modify or create new components as needed to handle the form submission and table rendering.
-State Management: Use React's state management to manage the state of the word-score pairs. Ensure the form resets after submission and the new entry is added to the table.
-Error Handling: Implement user-friendly error messages if the API returns an error (e.g., invalid input). Prevent form submission for empty strings or non-alphabetic characters.
+## Creativity & Design
 
-Styling:
-This is your chance to showcase your design flair. Feel free to experiment and get creative — but it would be great to see you incorporate the inspiration provided below in some way.
-Make sure the UI is fully responsive and keeps a consistent look and feel with the rest of the application.
-For inspiration, here’s a reference:
+This is where we want to see **you**.
+
+We deliberately only provide *one* piece of design inspiration. Everything else is **up for grabs** — we want to see:
+
+* How you interpret the style,
+* How closely you choose to match,
+* How you respect the craft of design (empathetic, thoughtful, considered),
+* How you use creativity to make the frontend engaging.
+
+We believe that respecting design deeply informs better collaboration and product decisions. Don’t just “make it work” — show us how you think about **design as an experience**.
 
 <img width="476" height="93" alt="Screenshot 2025-10-01 at 15 58 43" src="https://github.com/user-attachments/assets/f0e47694-2f68-4a72-9191-174622f71c4a" />
 
 https://github.com/user-attachments/assets/fd93c1a7-abb4-420c-a91c-abaec8cd7c7a
 
-Testing:
-If time permits, write unit tests for the new React components, particularly focusing on the form submission and table rendering logic.
-Monorepo Integration:
+---
 
-Ensure that the new frontend functionality follows the existing project structure and coding standards.
-Update the monorepo's build and deployment scripts (if necessary) to account for the new functionality.
+## Deliverables
 
-Commit Regularly:
-Please continue to commit regularly while working on the frontend portion. We want to see how you integrate with the existing codebase, manage your time, and resolve any challenges you encounter.
+* Push your work to a repo you’ve created.
+* Keep commits regular and descriptive.
+* Update the README with instructions for running/testing your feature.
 
-Deliverables:
-Push you project to a git repo created by you.
-Ensure that all code follows the project's linting and formatting guidelines.
-Update the monorepo README with details about the new feature, including how to run and test it locally.
-This test assesses your ability to work within an existing codebase, integrate new features into a Node.js backend, and connect those features to a React frontend. The focus is on how you approach the problem within the given time frame, so commit regularly, and don't worry if you can't complete every detail. We look forward to discussing your work in the follow-up review.
+---
+
+## Final Thoughts
+
+This test isn’t about perfection. It’s about:
+
+* How you explore a problem,
+* How you respect and extend a design,
+* How you use creativity and judgment,
+* How you communicate your process.
+
+We look forward to seeing what you do.
+
+---
+
+
+
