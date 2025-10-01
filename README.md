@@ -1,3 +1,5 @@
+Please read fully before starting.
+
 # Using this project
 
 Clone the project, change into the directory and install the dependencies.
@@ -17,7 +19,7 @@ Install dependencies
 yarn
 ```
 
-create a .env file
+create a .env file if you plan on using environment variables
 ```bash
 touch .env
 ```
@@ -131,8 +133,8 @@ The frontend is part of the same monorepo and is already set up with basic funct
 Frontend UI:
 Extend the existing UI to include a form with an input field and a submit button.
 Allow users to type a word into the input field and submit it to the new /api/scrabble-score API endpoint.
-Functionality:
 
+Functionality:
 On submitting the form, send a POST request to the /api/scrabble-score endpoint.
 Capture the API response and display the word and its score in a table below the form.
 Ensure the table updates dynamically to show a history of all submitted words and their corresponding scores.
@@ -143,8 +145,13 @@ State Management: Use React's state management to manage the state of the word-s
 Error Handling: Implement user-friendly error messages if the API returns an error (e.g., invalid input). Prevent form submission for empty strings or non-alphabetic characters.
 
 Styling:
-Go wild, this is your chance to show us your design flare. You have creative freedom.
-Ensure the UI is responsive and maintains a consistent look and feel with the rest of the application.
+This is your chance to showcase your design flair. Feel free to experiment and get creative — but it would be great to see you incorporate the inspiration provided below in some way.
+Make sure the UI is fully responsive and keeps a consistent look and feel with the rest of the application.
+For inspiration, here’s a reference:
+
+<img width="476" height="93" alt="Screenshot 2025-10-01 at 15 58 43" src="https://github.com/user-attachments/assets/f0e47694-2f68-4a72-9191-174622f71c4a" />
+
+https://github.com/user-attachments/assets/fd93c1a7-abb4-420c-a91c-abaec8cd7c7a
 
 Testing:
 If time permits, write unit tests for the new React components, particularly focusing on the form submission and table rendering logic.
@@ -157,7 +164,7 @@ Commit Regularly:
 Please continue to commit regularly while working on the frontend portion. We want to see how you integrate with the existing codebase, manage your time, and resolve any challenges you encounter.
 
 Deliverables:
-Commit your changes to the existing monorepo in a branch named scrabble-score-feature.
+Push you project to a git repo created by you.
 Ensure that all code follows the project's linting and formatting guidelines.
 Update the monorepo README with details about the new feature, including how to run and test it locally.
 This test assesses your ability to work within an existing codebase, integrate new features into a Node.js backend, and connect those features to a React frontend. The focus is on how you approach the problem within the given time frame, so commit regularly, and don't worry if you can't complete every detail. We look forward to discussing your work in the follow-up review.
