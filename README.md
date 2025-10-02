@@ -1,5 +1,3 @@
----
-
 # Using this project
 
 Please read this document fully before starting.
