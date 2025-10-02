@@ -1,5 +1,3 @@
-Please read fully before starting.
-
 ---
 
 # Using this project
